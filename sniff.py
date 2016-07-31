@@ -19,5 +19,6 @@ def arp_display(pkt):
             }
         )
         print ("Plum Organics detected")
+        sleep(0.1)
 
 sniff(prn=arp_display, filter="arp", store=0, count=0)
