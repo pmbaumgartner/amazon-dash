@@ -11,19 +11,19 @@ db = client['dog-dash']
 coll = db['records_collection']
 
 def arp_display(pkt):
-    capture_time = time()
     if pkt[ARP].op == 1:
-        if pkt[ARP].hwsrc == '44:65:0d:a6:17:55':
-            if time() - capture_time > 3:
-                time_now = datetime.datetime.now() # plum Organics
-                coll.insert_one(
-                    {
-                        'dog': 'BUTTON',
-                        'time': time_now
-                    }
-                )
-                print("Plum Organics detected")
+        MAC = pkt[ARP].hwsrc
+        if MAC == '44:65:0d:a6:17:55' & MAC != last_mac:
+            time_now = datetime.datetime.now() # plum Organics
+            coll.insert_one(
+                {
+                    'dog': 'BUTTON',
+                    'time': time_now
+                }
+            )
+            print("Plum Organics detected")
 
-                capture_time = time()
+            capture_time = time()
+            last_mac = MAC
 
 sniff(prn=arp_display, filter="arp", store=0, count=0)
