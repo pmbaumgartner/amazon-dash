@@ -1,6 +1,7 @@
 from scapy.all import *
 from pymongo import MongoClient
 import datetime
+import pytz
 
 from time import sleep, time
 
@@ -16,11 +17,11 @@ def arp_display(pkt):
     global last_mac
     if pkt[ARP].op == 1:
         MAC = pkt[ARP].hwsrc
-        print(MAC)
+        # print(MAC)
 
         # plum organics / ellis poop
         if MAC == '44:65:0d:a6:17:55' and MAC != last_mac:
-            time_now = datetime.datetime.now()
+            time_now = datetime.datetime.now(pytz.utc)
             coll.insert_one(
                 {
                     'dog': 'Ellis',
@@ -28,11 +29,11 @@ def arp_display(pkt):
                     'outcome' : 'poop'
                 }
             )
-            print("Plum Organics detected")
+            # print("Plum Organics detected")
 
         # chunky / miles poop
         if MAC == '44:65:0d:50:3b:dc' and MAC != last_mac:
-            time_now = datetime.datetime.now()
+            time_now = datetime.datetime.now(pytz.utc)
             coll.insert_one(
                 {
                     'dog': 'Miles',
@@ -40,11 +41,11 @@ def arp_display(pkt):
                     'outcome' : 'poop'
                 }
             )
-            print("Chunky Soup detected")
+            # print("Chunky Soup detected")
 
         # litter genie / miles pee
         if MAC == '44:65:0d:b7:e1:35' and MAC != last_mac:
-            time_now = datetime.datetime.now()
+            time_now = datetime.datetime.now(pytz.utc)
             coll.insert_one(
                 {
                     'dog': 'Miles',
@@ -52,11 +53,11 @@ def arp_display(pkt):
                     'outcome' : 'pee'
                 }
             )
-            print("Litter Genie detected")
+            # print("Litter Genie detected")
 
         # glad / ellis pee
         if MAC == '44:65:0d:31:33:e5' and MAC != last_mac:
-            time_now = datetime.datetime.now()
+            time_now = datetime.datetime.now(pytz.utc)
             coll.insert_one(
                 {
                     'dog': 'Ellis',
@@ -64,7 +65,7 @@ def arp_display(pkt):
                     'outcome' : 'pee'
                 }
             )
-            print("Glade detected")
+            # print("Glade detected")
 
         last_mac = MAC
 
