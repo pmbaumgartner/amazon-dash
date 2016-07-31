@@ -17,17 +17,33 @@ def arp_display(pkt):
     if pkt[ARP].op == 1:
         MAC = pkt[ARP].hwsrc
         print(MAC)
+
+        # plum organics / ellis poop
         if MAC == '44:65:0d:a6:17:55' and MAC != last_mac:
             time_now = datetime.datetime.now() # plum Organics
             coll.insert_one(
                 {
-                    'dog': 'BUTTON',
-                    'time': time_now
+                    'dog': 'Ellis',
+                    'time': time_now,
+                    'outcome' : 'poop'
                 }
             )
             print("Plum Organics detected")
 
-            capture_time = time()
+        # chunky / miles poop
+        if MAC == '44:65:0d:50:3b:dc' and MAC != last_mac:
+            time_now = datetime.datetime.now() # plum Organics
+            coll.insert_one(
+                {
+                    'dog': 'Miles',
+                    'time': time_now,
+                    'outcome' : 'poop'
+                }
+            )
+            print("Chunky Soup detected")
+
+
+
         last_mac = MAC
 
 
