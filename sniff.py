@@ -16,6 +16,7 @@ def arp_display(pkt):
     global last_mac
     if pkt[ARP].op == 1:
         MAC = pkt[ARP].hwsrc
+        print(MAC)
         if MAC == '44:65:0d:a6:17:55' and MAC != last_mac:
             time_now = datetime.datetime.now() # plum Organics
             coll.insert_one(
@@ -27,6 +28,7 @@ def arp_display(pkt):
             print("Plum Organics detected")
 
             capture_time = time()
-            last_mac = MAC
+        last_mac = MAC
+
 
 sniff(prn=arp_display, filter="arp", store=0, count=0)
