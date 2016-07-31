@@ -20,7 +20,7 @@ def arp_display(pkt):
 
         # plum organics / ellis poop
         if MAC == '44:65:0d:a6:17:55' and MAC != last_mac:
-            time_now = datetime.datetime.now() # plum Organics
+            time_now = datetime.datetime.now()
             coll.insert_one(
                 {
                     'dog': 'Ellis',
@@ -32,7 +32,7 @@ def arp_display(pkt):
 
         # chunky / miles poop
         if MAC == '44:65:0d:50:3b:dc' and MAC != last_mac:
-            time_now = datetime.datetime.now() # plum Organics
+            time_now = datetime.datetime.now()
             coll.insert_one(
                 {
                     'dog': 'Miles',
@@ -42,7 +42,29 @@ def arp_display(pkt):
             )
             print("Chunky Soup detected")
 
+        # litter genie / miles pee
+        if MAC == '44:65:0d:b7:e1:35' and MAC != last_mac:
+            time_now = datetime.datetime.now()
+            coll.insert_one(
+                {
+                    'dog': 'Miles',
+                    'time': time_now,
+                    'outcome' : 'pee'
+                }
+            )
+            print("Litter Genie detected")
 
+        # glad / ellis pee
+        if MAC == '44:65:0d:31:33:e5' and MAC != last_mac:
+            time_now = datetime.datetime.now()
+            coll.insert_one(
+                {
+                    'dog': 'Ellis',
+                    'time': time_now,
+                    'outcome' : 'pee'
+                }
+            )
+            print("Glade detected")
 
         last_mac = MAC
 
