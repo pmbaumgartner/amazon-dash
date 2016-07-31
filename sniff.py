@@ -13,7 +13,7 @@ coll = db['records_collection']
 def arp_display(pkt):
     if pkt[ARP].op == 1:
         MAC = pkt[ARP].hwsrc
-        if MAC == '44:65:0d:a6:17:55' & MAC != last_mac:
+        if MAC == '44:65:0d:a6:17:55' and MAC != last_mac:
             time_now = datetime.datetime.now() # plum Organics
             coll.insert_one(
                 {
