@@ -10,7 +10,10 @@ db = client['dog-dash']
 
 coll = db['records_collection']
 
+last_mac = None
+
 def arp_display(pkt):
+    global last_mac
     if pkt[ARP].op == 1:
         MAC = pkt[ARP].hwsrc
         if MAC == '44:65:0d:a6:17:55' and MAC != last_mac:
