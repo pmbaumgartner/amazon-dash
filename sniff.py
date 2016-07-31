@@ -10,9 +10,8 @@ db = client['dog-dash']
 
 coll = db['records_collection']
 
-capture_time = time()
-
 def arp_display(pkt):
+    capture_time = time()
     if pkt[ARP].op == 1:
         if pkt[ARP].hwsrc == '44:65:0d:a6:17:55':
             if time() - capture_time > 3:
