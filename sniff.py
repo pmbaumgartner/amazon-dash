@@ -12,15 +12,19 @@ coll = db['records_collection']
 
 
 def arp_display(pkt):
+    start_time = time()
     if pkt[ARP].op == 1:  # who-has (request)
-        if pkt[ARP].hwsrc == '44:65:0d:a6:17:55':  # plum Organics
-            coll.insert_one(
-                {
-                    'dog': 'BUTTON',
-                    'time': datetime.datetime.now()
-                }
-            )
-            print("Plum Organics detected")
+        if pkt[ARP].hwsrc == '44:65:0d:a6:17:55':
+            capture_time = time()
+            if capture_time - start_time > 3:
+                time_now =  datetime.datetime.now() # plum Organics
+                coll.insert_one(
+                    {
+                        'dog': 'BUTTON',
+                        'time': time_now
+                    }
+                )
+                print("Plum Organics detected", str(time_now))
 
 
 sniff(prn=arp_display, filter="arp", store=0, count=0)
