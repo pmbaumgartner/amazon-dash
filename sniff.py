@@ -2,6 +2,8 @@ from scapy.all import *
 from pymongo import MongoClient
 import datetime
 
+from time import sleep
+
 client = MongoClient("mongodb://dog:dash@ds139425.mlab.com:39425/dog-dash")
 
 db = client['dog-dash']
